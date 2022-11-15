@@ -4,6 +4,7 @@ namespace App\Controllers;
 
 use App\Models\Article;
 use Symfony\Component\Routing\RouteCollection;
+use PDO;
 
 class ArticleController
 {
@@ -11,7 +12,24 @@ class ArticleController
 	public function showAction(int $id, RouteCollection $routes)
 	{
         $article = new Article();
+        $pdo = new PDO('mysql:host=localhost;dbname=it-ems', 'root', ''); 
+
+        $sql = "SELECT * FROM article WHERE id=$id";
+        foreach ($pdo->query($sql) as $row) {
+            $article->setTitle($row['title']);
+            $article->setDescription($row['description']);
+            $article->setAmount($row['amount']);
+            $article->setColor($row['color']);
+            $article->setBrand($row['brand']);
+        }
         $article->read($id);
+
+
+
+        
+
+
+        
 
         require_once APP_ROOT . '/views/article.php';
 	}

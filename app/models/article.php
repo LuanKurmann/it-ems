@@ -1,7 +1,6 @@
 <?php 
 namespace App\Models;
 
-
 class Article
 {
     protected $id;
@@ -86,13 +85,6 @@ class Article
 
     public function read(int $id)
     {
-        
-        $this->title = 'My first Article';
-        $this->description = 'Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum ';
-        $this->amount = 2;
-        $this->color = 'MVC-SP-PHP-01';
-        $this->brand = 'https://via.placeholder.com/150';
-
         return $this;
     }
 }
