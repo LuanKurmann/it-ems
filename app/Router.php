@@ -9,6 +9,8 @@ use Symfony\Component\Routing\Matcher\UrlMatcher;
 use Symfony\Component\Routing\Exception\MethodNotAllowedException;
 use Symfony\Component\Routing\Exception\ResourceNotFoundException;
 use Symfony\Component\Routing\Exception\NoConfigurationException;
+use App\Controllers\ArticleController;
+
 
 class Router
 {
@@ -34,7 +36,7 @@ class Router
     
             // https://github.com/gmaccario/simple-mvc-php-framework/issues/2
             // Issue #2: Fix Non-static method ... should not be called statically
-            $className = '\\app\\controllers\\' . $matcher['controller'];
+            $className = '\\App\\Controllers\\' . $matcher['controller'];
             $classInstance = new $className();
     
             // Add routes as paramaters to the next class

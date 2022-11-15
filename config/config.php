@@ -5,7 +5,7 @@ define('SITE_NAME', 'it-ems');
 //App Root
 define('APP_ROOT', dirname(dirname(__FILE__)));
 define('URL_ROOT', '/');
-define('URL_SUBFOLDER', '');
+define('URL_SUBFOLDER', '/it-ems');
 
 //DB Params
 define('DB_HOST', 'localhost');

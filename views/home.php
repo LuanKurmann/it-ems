@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html>
 
@@ -15,16 +16,11 @@
 <body>
 
     <section>
-        <h1>My Article:</h1>
-        <ul>
-            <li><?php echo $article->getTitle(); ?></li>
-            <li><?php echo $article->getDescription(); ?></li>
-            <li><?php echo $article->getAmount(); ?></li>
-            <li><?php echo $article->getColor(); ?></li>
-            <li><?php echo $article->getBrand(); ?></li>
-        </ul>
-        <a href="<?php echo $routes->get('homepage')->getPath(); ?>">Back to homepage</a>
-    </section>
+        <h1>Homepage</h1>
+        <p>
+            <a href="<?php echo $routeToProduct ?>">Check the first product</a>
+        </p>
+    <section>
 
     <script src="https://code.jquery.com/jquery-3.6.0.min.js" 
         integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" 
