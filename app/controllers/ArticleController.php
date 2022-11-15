@@ -12,7 +12,7 @@ class ArticleController
 	public function showAction(int $id, RouteCollection $routes)
 	{
         $article = new Article();
-        $pdo = new PDO('mysql:host=localhost;dbname=it-ems', 'root', ''); 
+        $pdo = new PDO('mysql:host=' . constant('DB_HOST') . ';' . 'dbname=' . constant('DB_NAME'), constant('DB_USER'), constant('DB_PASS'));
 
         $sql = "SELECT * FROM article WHERE id=$id";
         foreach ($pdo->query($sql) as $row) {

@@ -18,7 +18,17 @@
     <section>
         <h1>Homepage</h1>
         <p>
-            <a href="<?php echo $routeToProduct ?>">Check the first product</a>
+            <br>
+            <?php
+                foreach($allArticles as $articles) {
+                    
+                    ?>
+                    <br>
+                    <a href="<?php echo str_replace('{id}', $articles['id'], $routes->get('article')->getPath()) ?>">
+                        <?php echo $articles['title']; ?>
+                    </a>
+                    <br>
+                <?php } ?>
         </p>
     <section>
 
