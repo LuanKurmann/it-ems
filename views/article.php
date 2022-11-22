@@ -79,34 +79,61 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     </style>
 </head>
 <body>
+    <!-- Product section-->
+    <section class="py-5">
+        <div class="container px-4 px-lg-5 my-5">
+        <a href="<?php echo $routes->get('homepage')->getPath(); ?>">< Back to homepage</a><br>
 
-    <section>
-        <h1>My Article:</h1>
-        <ul>
-            <li><?php echo $article->getTitle(); ?></li>
-            <li><?php echo $article->getDescription(); ?></li>
-            <li><?php echo $article->getAmount(); ?></li>
-            <li><?php echo $article->getColor(); ?></li>
-            <li><?php echo $article->getBrand(); ?></li>
-        </ul>
-        <a href="<?php echo $routes->get('homepage')->getPath(); ?>">Back to homepage</a>
-
-        <h1>Order</h1>
-        <?php if (empty($msg)) { ?>
-            <form method="POST" action="">
-                <label for="name">Name: <input type="text" name="name" id="name" maxlength="255" required></label><br>
-                <label for="email">E-Mail: <input type="email" name="email" id="email" maxlength="255" required></label><br>
-                <label for="item">Produkt: <input type="text" id="item" name="item" value="<?php echo $article->getTitle(); ?>" style="border: none;" readonly disabled></label><br>
-                <label for="query">Zusätzliche Informationen:</label><br>
-                <textarea cols="30" rows="8" name="query" id="query" placeholder="Zusätzliche Informationen"></textarea><br>
-                <input type="submit" value="Bestellen">
-            </form>
-        <?php } else {
-            echo $msg;
-        } ?>
+            <div class="row gx-4 gx-lg-5 align-items-center">
+                <div class="col-md-6"><img class="card-img-top mb-5 mb-md-0" src="https://dummyimage.com/600x700/dee2e6/6c757d.jpg" alt="..." /></div>
+                <div class="col-md-6">
+                    <h1 class="display-5 fw-bolder"><?php echo $article->getTitle(); ?></h1>
+                    <div class="fs-5 mb-4">
+                        <span>Verfügbarkeit: <?php echo $article->getAmount(); ?></span><br>
+                        <span>Marke: <?php echo $article->getBrand(); ?></span><br>
+                        <span>farbe: <?php echo $article->getColor(); ?></span>
+                    </div>
+                    <p class="lead"><?php echo $article->getDescription(); ?></p>
+                </div>
+            </div>
+        </div>
     </section>
-    
-
+    <section>
+        <div class="container px-4 px-lg-5 my-5">
+            <h2>Bestellen</h2><br><br>
+            <?php if (empty($msg)) { ?>
+            <form method="POST" action="">
+                <div class="form-group row">
+                    <label for="name" class="col-sm-2 col-form-label">Name</label>
+                    <div class="col-sm-10">
+                        <input type="text" class="form-control" id="name" name="name" placeholder="Max Mustermann">
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label for="email" class="col-sm-2 col-form-label">E-Mail</label>
+                    <div class="col-sm-10">
+                        <input type="email" class="form-control" id="email" name="email" placeholder="max@mustermann.ch">
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label for="query" class="col-sm-2 col-form-label">Sonstiges</label>
+                    <div class="col-sm-10">
+                        <textarea class="form-control" id="query" name="query" rows="3"></textarea>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label for="item" class="col-sm-2 col-form-label">Produkt</label>
+                    <div class="col-sm-10">
+                    <input type="text" readonly class="form-control-plaintext" id="item" name="item" value="<?php echo $article->getTitle(); ?>">
+                    </div>
+                </div>
+                <button type="submit" class="btn btn-primary">Bestellen</button>
+            </div>
+        </form>
+        <?php } else {
+                    echo $msg;
+                } ?>
+    </section>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js" 
         integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" 
         crossorigin="anonymous"></script>

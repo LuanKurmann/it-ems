@@ -36,12 +36,13 @@ require '../config/phpMail.php';
                 <div class="col mb-5">
                     <div class="card h-100">
                         <!-- Product image-->
-                        <img class="card-img-top" src="https://dummyimage.com/450x300/dee2e6/6c757d.jpg" alt="..." />
+                        <img class="card-img-top" src="" alt="..." />
                         <!-- Product details-->
                         <div class="card-body p-4">
                             <div class="text-center">
                                 <!-- Product name-->
                                 <h5 class="fw-bolder"><?php echo $articles['title']; ?></h5>
+                                <h7><?php  if(strlen($articles['description']) > 50) {echo substr($articles['description'], 0, 50).'...';}; ?></h7>
                             </div>
                         </div>
                         <!-- Product actions-->
@@ -56,21 +57,6 @@ require '../config/phpMail.php';
             </div>
         </div>
     </section>
-    <section>
-        <p>
-            <br>
-            <?php
-                foreach($allArticles as $articles) {
-                    
-                    ?>
-                    <br>
-                    <a href="<?php echo str_replace('{id}', $articles['id'], $routes->get('article')->getPath()) ?>">
-                        <?php echo $articles['title']; ?>
-                    </a>
-                    <br>
-                <?php } ?>
-        </p>
-    <section>
 
     <script src="https://code.jquery.com/jquery-3.6.0.min.js" 
         integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" 
