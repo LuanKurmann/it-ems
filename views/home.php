@@ -42,7 +42,7 @@ require '../config/phpMail.php';
                             <div class="text-center">
                                 <!-- Product name-->
                                 <h5 class="fw-bolder"><?php echo $articles['title']; ?></h5>
-                                <h7><?php  if(strlen($articles['description']) > 50) {echo substr($articles['description'], 0, 50).'...';}; ?></h7>
+                                <h7><?php  if(strlen($articles['description']) > 50) {echo substr($articles['description'], 0, 50).'...';} else {echo $articles['description'];}; ?></h7>
                             </div>
                         </div>
                         <!-- Product actions-->
