@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Erstellungszeit: 15. Nov 2022 um 15:16
+-- Erstellungszeit: 22. Nov 2022 um 13:06
 -- Server-Version: 10.4.25-MariaDB
 -- PHP-Version: 8.1.10
 
@@ -33,16 +33,21 @@ CREATE TABLE `article` (
   `description` varchar(512) NOT NULL,
   `amount` int(11) NOT NULL,
   `color` varchar(128) NOT NULL,
-  `brand` varchar(128) NOT NULL
+  `brand` varchar(128) NOT NULL,
+  `img` varchar(255) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Daten für Tabelle `article`
 --
 
-INSERT INTO `article` (`id`, `title`, `description`, `amount`, `color`, `brand`) VALUES
-(1, 'Test', 'Test dis', 4, 'Blue', 'item'),
-(2, 'Testsadwaerf', 'Test dis', 4, 'Blue', 'item');
+INSERT INTO `article` (`id`, `title`, `description`, `amount`, `color`, `brand`, `img`) VALUES
+(3, 'Stift', 'Info', 5, 'Blau', 'fffefesdf', 'dfsdf'),
+(4, 'Stift', 'Info', 5, 'Blau', 'fffefesdf', 'dfsdf'),
+(5, 'Blatt', 'Info', 5, 'Blau', 'fffefesdf', 'dfsdf'),
+(6, 'Laptop', 'Info', 5, 'Blau', 'fffefesdf', 'dfsdf'),
+(7, 'PC', 'Info', 5, 'Blau', 'fffefesdf', 'dfsdf'),
+(8, 'Maus', 'Info', 5, 'Blau', 'fffefesdf', 'dfsdf');
 
 --
 -- Indizes der exportierten Tabellen
@@ -62,7 +67,7 @@ ALTER TABLE `article`
 -- AUTO_INCREMENT für Tabelle `article`
 --
 ALTER TABLE `article`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
