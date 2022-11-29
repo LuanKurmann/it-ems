@@ -15,7 +15,6 @@ class PageController
 
         $sql = "SELECT * FROM article";
         $allArticles = $pdo->query($sql);
-		//$routeToProduct = str_replace('{id}', 1, $routes->get('article')->getPath());
 
         require_once APP_ROOT . '/views/home.php';
 	}
