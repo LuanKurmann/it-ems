@@ -3,13 +3,13 @@ namespace App\Models;
 
 class Article
 {
-    protected $id;
-    protected $title;
-    protected $description;
-    protected $amount;
-    protected $color;
-    protected $brand;
-    protected $image;
+    public $id;
+    public $title;
+    public $description;
+    public $amount;
+    public $color;
+    public $brand;
+    public $image;
 
     // GET METHODS
     public function getId()

@@ -87,6 +87,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 </head>
 <body>
     <!-- Product section-->
+    <?php 
+    if (empty($article->title)) {
+        header('Location: ' . URL_SUBFOLDER);
+        die();
+    } ?>
     <section class="py-5">
         <div class="container px-4 px-lg-5 my-5">
         <a href="<?php echo $routes->get('homepage')->getPath(); ?>">< Back to homepage</a><br>
