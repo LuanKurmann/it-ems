@@ -8,12 +8,14 @@ use PHPMailer\PHPMailer\Exception;
 //Load Composer's autoloader
 require '../vendor/autoload.php';
 
-function sendEMail($buyer,$buyerEMail,$itemOrdered){
-    sendEMailToAdmin($buyer,$itemOrdered);
-    sendEMailToCustomer($buyer,$buyerEMail,$itemOrdered);
+function sendEMail($buyer, $buyerEMail, $itemOrdered)
+{
+    sendEMailToAdmin($buyer, $itemOrdered);
+    sendEMailToCustomer($buyer, $buyerEMail, $itemOrdered);
 }
 
-function sendEMailToAdmin($buyer,$itemOrdered){
+function sendEMailToAdmin($buyer, $itemOrdered)
+{
     //Create an instance; passing `true` enables exceptions
     $mail = new PHPMailer(true);
 
@@ -34,8 +36,8 @@ function sendEMailToAdmin($buyer,$itemOrdered){
 
         //Content
         $mail->isHTML(true);                                  //Set email format to HTML
-        $mail->Subject = 'Order from '.$buyer;
-        $mail->Body    = 'Item Ordered: '.$itemOrdered;
+        $mail->Subject = 'Order from ' . $buyer;
+        $mail->Body    = 'Item Ordered: ' . $itemOrdered;
         // $mail->AltBody = 'This is the body in plain text for non-HTML mail clients';
 
         $mail->send();
@@ -45,7 +47,8 @@ function sendEMailToAdmin($buyer,$itemOrdered){
     }
 }
 
-function sendEMailToCustomer($buyer,$itemOrdered,$buyerEMail){
+function sendEMailToCustomer($buyer, $itemOrdered, $buyerEMail)
+{
     //Create an instance; passing `true` enables exceptions
     $mail = new PHPMailer(true);
 
@@ -67,7 +70,7 @@ function sendEMailToCustomer($buyer,$itemOrdered,$buyerEMail){
         //Content
         $mail->isHTML(true);                                  //Set email format to HTML
         $mail->Subject = 'Thank you for your Order';
-        $mail->Body    = 'Hey'.$buyer.'/nThank you for your Order. /nYou Ordered: '.$itemOrdered;
+        $mail->Body    = 'Hey' . $buyer . '/nThank you for your Order. /nYou Ordered: ' . $itemOrdered;
         // $mail->AltBody = 'This is the body in plain text for non-HTML mail clients';
 
         $mail->send();

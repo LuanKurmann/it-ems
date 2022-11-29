@@ -9,6 +9,7 @@ class Article
     protected $amount;
     protected $color;
     protected $brand;
+    protected $image;
 
     // GET METHODS
     public function getId()
@@ -40,6 +41,10 @@ class Article
     {
         return $this->brand;
     }
+    public function getImage()
+    {
+        return $this->brand;
+    }
 
     // SET METHODS
     public function setTitle(string $title)
@@ -63,6 +68,10 @@ class Article
     }
 
     public function setBrand(string $brand)
+    {
+        $this->brand = $brand;
+    }
+    public function setImage(string $brand)
     {
         $this->brand = $brand;
     }
