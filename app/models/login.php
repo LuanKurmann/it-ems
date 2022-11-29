@@ -4,12 +4,12 @@ namespace App\Models;
 
 class Login
 {
-    protected $id;
-    protected $firstname;
-    protected $name;
-    protected $username;
-    protected $email;
-    protected $password;
+    public $id;
+    public $firstname;
+    public $name;
+    public $username;
+    public $email;
+    public $password;
 
     /**
      * @return mixed
