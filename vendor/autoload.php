@@ -22,4 +22,8 @@ if (PHP_VERSION_ID < 50600) {
 
 require_once __DIR__ . '/composer/autoload_real.php';
 
+<<<<<<< Updated upstream
 return ComposerAutoloaderInit0859765a9b396ab4406c80ef951e26d4::getLoader();
+=======
+return ComposerAutoloaderInit90fc6973ce98f7928a216d7a1aa727b1::getLoader();
+>>>>>>> Stashed changes
