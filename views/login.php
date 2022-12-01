@@ -1,4 +1,27 @@
 <?php include 'partials\header.php'; ?>
+
+<div class="container">
+    <h2 class="text-center mt-5">Login</h2>
+    <form method="post">
+        <label>Username</label>
+        <input type="text" name="username" class="form-control" />
+        <br />
+        <label>Password</label>
+        <input type="password" name="password" class="form-control" />
+        <br />
+        <input type="submit" name="login" class="btn btn-info" value="Login" />
+    </form>
+    <?php if (isset($message)) : ?>
+        <div class="w-100 text-center">
+            <p class="text-danger "><?php echo $message; ?> </p>
+        </div>
+    <?php endif; ?>
+</div>
+
+
+
+
+<!--
 <div class="container">
     <form>
         <div class="mb-3">

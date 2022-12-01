@@ -11,6 +11,7 @@
     <link rel="shortcut icon" href="/app/assets/images/pencil-solid.svg">
     <title>IT-EMS</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="public/assets/all.css">
 </head>
 
 <body>
@@ -21,5 +22,7 @@
                 <p class="lead fw-normal text-white-50 mb-0">Hier können sie Büromaterialien bestellen</p>
             </div>
         </div>
+        <div class="text-center text-white">
+            <h2><a href="<?php echo URL_SUBFOLDER . '/login'; ?>">Login</a></h2>
+        </div>
     </header>
-    <img src="/app/assets/images/pencil-solid.svg" alt="">

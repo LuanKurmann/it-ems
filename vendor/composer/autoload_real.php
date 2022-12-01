@@ -24,8 +24,6 @@ class ComposerAutoloaderInit3488e26c763d12db85b60221c86d9ebd
 
         require __DIR__ . '/platform_check.php';
 
-        spl_autoload_register(array('ComposerAutoloaderInit3488e26c763d12db85b60221c86d9ebd', 'loadClassLoader'), true, true);
-        self::$loader = $loader = new \Composer\Autoload\ClassLoader(\dirname(__DIR__));
         spl_autoload_unregister(array('ComposerAutoloaderInit3488e26c763d12db85b60221c86d9ebd', 'loadClassLoader'));
 
         require __DIR__ . '/autoload_static.php';
@@ -35,7 +33,18 @@ class ComposerAutoloaderInit3488e26c763d12db85b60221c86d9ebd
 
         $includeFiles = \Composer\Autoload\ComposerStaticInit3488e26c763d12db85b60221c86d9ebd::$files;
         foreach ($includeFiles as $fileIdentifier => $file) {
-            composerRequire3488e26c763d12db85b60221c86d9ebd($fileIdentifier, $file);
+        spl_autoload_register(array('ComposerAutoloaderInit90fc6973ce98f7928a216d7a1aa727b1', 'loadClassLoader'), true, true);
+        self::$loader = $loader = new \Composer\Autoload\ClassLoader(\dirname(__DIR__));
+        spl_autoload_unregister(array('ComposerAutoloaderInit90fc6973ce98f7928a216d7a1aa727b1', 'loadClassLoader'));
+
+        require __DIR__ . '/autoload_static.php';
+        call_user_func(\Composer\Autoload\ComposerStaticInit90fc6973ce98f7928a216d7a1aa727b1::getInitializer($loader));
+
+        $loader->register(true);
+
+        $includeFiles = \Composer\Autoload\ComposerStaticInit90fc6973ce98f7928a216d7a1aa727b1::$files;
+        foreach ($includeFiles as $fileIdentifier => $file) {
+            composerRequire90fc6973ce98f7928a216d7a1aa727b1($fileIdentifier, $file);
         }
 
         return $loader;
@@ -47,7 +56,6 @@ class ComposerAutoloaderInit3488e26c763d12db85b60221c86d9ebd
  * @param string $file
  * @return void
  */
-function composerRequire3488e26c763d12db85b60221c86d9ebd($fileIdentifier, $file)
 {
     if (empty($GLOBALS['__composer_autoload_files'][$fileIdentifier])) {
         $GLOBALS['__composer_autoload_files'][$fileIdentifier] = true;
