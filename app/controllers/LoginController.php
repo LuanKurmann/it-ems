@@ -4,10 +4,8 @@ namespace App\Controllers;
 use App\Models\Login;
 use Symfony\Component\Routing\RouteCollection;
 use PDO;
-use PDOException;
 
-class LoginController
-{
+class LoginController {
 
     public function indexAction(RouteCollection $routes)
     {
@@ -22,13 +20,19 @@ class LoginController
                     $statement = $pdo->prepare($query);
                     $statement->execute(
                         array(
-                            'username'     =>     $_POST["username"],
-                            'password'     =>     $_POST["password"]
-                        )
-                    );
+                            'username' => $_POST["username"],
+                            'password' => $_POST["password"],
+                            )
+                        );
                     $count = $statement->rowCount();
                     if ($count > 0) {
+                        session_start();
                         $_SESSION["username"] = $_POST["username"];
+                        $_SESSION["password"] = $_POST["password"];
+                        $_SESSION["firstname"] = $_POST["firstname"];
+                        $_SESSION["name"] = $_POST["name"];
+                        $_SESSION["email"] = $_POST["email"];
+
                         header('Location: ' . URL_SUBFOLDER);
                     } else {
                         $message = 'Falsche Daten, bitte versuchen Sie es erneut.';
@@ -43,7 +47,6 @@ class LoginController
 
     public function logout(RouteCollection $routes)
     {
-
         require_once APP_ROOT . '/views/logout.php';
     }
 }
