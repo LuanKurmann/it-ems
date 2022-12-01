@@ -31,13 +31,20 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $mail->addAddress('luan@kurmann.dev', 'IT-EMS');     //Add a recipie
 
     $mail->Subject = 'Order from '.strip_tags($_POST['name']);
-    $mail->Body    = 'Name: '.strip_tags($_POST['name'])."\nE-Mail: ".strip_tags($_POST['email'])."\n".'Bestelltes Item: '.$article->getTitle()."\nNachricht:\n".strip_tags($_POST['query']);
+    $mail->Body    = 'Name: '. strip_tags($_POST['name'])."\nE-Mail: ".strip_tags($_POST['email'])."\n".'Bestelltes Item: '.$article->getTitle()."\nNachricht:\n".strip_tags($_POST['query']);
 
     if (!$mail->send()) {
-        $msg .= 'Es ist ein Fehler aufgetreten: ' . $mail->ErrorInfo;
+        $msg .= 'Es ist ein Fehler bei der Bestellung aufgetreten: ' . $mail->ErrorInfo;
     } else {
-         $msg .= 'Bestellung plaziert!';
+         $msg .= 'Bestellung wurde plaziert!';
     }
+
+    $mail->ClearAllRecipients();
+    $mail->setFrom('order@it-ems.store', 'IT-EMS');
+    $mail->addAddress(strip_tags($_POST['email']), strip_tags($_POST['name']));     //Add a recipie
+    $mail->Subject = 'Danke für die Bestellung';
+    $mail->Body    = 'Hallo ' . strip_tags($_POST['name'])."\nDanke für die Bestellung. \nBestellter Artikel: ".$article->getTitle();
+    $mail->send();
 /*
     $mail1 = new PHPMailer(true);
 
@@ -80,12 +87,16 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 </head>
 <body>
     <!-- Product section-->
+    <?php 
+    if (empty($article->title)) {
+        header('Location: ' . URL_SUBFOLDER);
+        die();
+    } ?>
     <section class="py-5">
         <div class="container px-4 px-lg-5 my-5">
         <a href="<?php echo $routes->get('homepage')->getPath(); ?>">< Back to homepage</a><br>
-
             <div class="row gx-4 gx-lg-5 align-items-center">
-                <div class="col-md-6"><img class="card-img-top mb-5 mb-md-0" src="https://dummyimage.com/600x700/dee2e6/6c757d.jpg" alt="..." /></div>
+                <div class="col-md-6"><img class="card-img-top mb-5 mb-md-0" src="<?php echo '/it-ems/public/assets/' . $article->getImage() . '.jpg'; ?>" alt="..." /></div>
                 <div class="col-md-6">
                     <h1 class="display-5 fw-bolder"><?php echo $article->getTitle(); ?></h1>
                     <div class="fs-5 mb-4">

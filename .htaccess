@@ -10,4 +10,10 @@ RewriteRule (.+) public/$1 [L]
 
 # Route all other requests
 RewriteRule (.*) public/index.php?route=$1 [L,QSA]
+
+
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+
+RewriteRule ^.*$ index.php [PT,L]
 </IfModule>

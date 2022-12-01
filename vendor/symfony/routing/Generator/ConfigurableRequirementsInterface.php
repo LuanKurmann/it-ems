@@ -23,11 +23,11 @@ namespace Symfony\Component\Routing\Generator;
  * - setStrictRequirements(false): Don't throw an exception but return an empty string as URL for
  *   mismatching requirements and log the problem. Useful when you cannot control all
  *   params because they come from third party libs but don't want to have a 404 in
- *   articleion environment. It should log the mismatch so one can review it.
+ *   production environment. It should log the mismatch so one can review it.
  * - setStrictRequirements(null): Return the URL with the given parameters without
  *   checking the requirements at all. When generating a URL you should either trust
  *   your params or you validated them beforehand because otherwise it would break your
- *   link anyway. So in articleion environment you should know that params always pass
+ *   link anyway. So in production environment you should know that params always pass
  *   the requirements. Thus this option allows to disable the check on URL generation for
  *   performance reasons (saving a preg_match for each requirement every time a URL is
  *   generated).

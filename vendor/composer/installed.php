@@ -3,11 +3,7 @@
         'name' => 'gmaccario/simple-mvc-php-framework',
         'pretty_version' => 'dev-develop',
         'version' => 'dev-develop',
-<<<<<<< Updated upstream
         'reference' => 'a5cd3869b2a31f576fa55c48adc09b093468b911',
-=======
-        'reference' => 'd0da1d84cfee866daf15e2aab65571ff967aa82f',
->>>>>>> Stashed changes
         'type' => 'library',
         'install_path' => __DIR__ . '/../../',
         'aliases' => array(),
@@ -35,11 +31,7 @@
         'gmaccario/simple-mvc-php-framework' => array(
             'pretty_version' => 'dev-develop',
             'version' => 'dev-develop',
-<<<<<<< Updated upstream
-            'reference' => 'a5cd3869b2a31f576fa55c48adc09b093468b911',
-=======
             'reference' => 'd0da1d84cfee866daf15e2aab65571ff967aa82f',
->>>>>>> Stashed changes
             'type' => 'library',
             'install_path' => __DIR__ . '/../../',
             'aliases' => array(),
@@ -109,9 +101,9 @@
             'dev_requirement' => false,
         ),
         'symfony/polyfill-mbstring' => array(
-            'pretty_version' => 'v1.26.0',
-            'version' => '1.26.0.0',
-            'reference' => '9344f9cb97f3b19424af1a21a3b0e75b0a7d8d7e',
+            'pretty_version' => 'v1.27.0',
+            'version' => '1.27.0.0',
+            'reference' => '8ad114f6b39e2c98a8b0e3bd907732c207c2b534',
             'type' => 'library',
             'install_path' => __DIR__ . '/../symfony/polyfill-mbstring',
             'aliases' => array(),

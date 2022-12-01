@@ -269,7 +269,7 @@ CHANGELOG
    when it's not needed.
  * The ConfigurableRequirementsInterface can now also be used to disable the requirements
    check on URL generation completely by calling `setStrictRequirements(null)`. It
-   improves performance in articleion environment as you should know that params always
+   improves performance in production environment as you should know that params always
    pass the requirements (otherwise it would break your link anyway).
  * There is no restriction on the route name anymore. So non-alphanumeric characters
    are now also allowed.
