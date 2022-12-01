@@ -7,16 +7,6 @@ use PDO;
 
 class LoginController {
 
-	public function indexAction(RouteCollection $routes)
-	{
-		$pdo = new PDO('mysql:host=' . constant('DB_HOST') . ';' . 'dbname=' . constant('DB_NAME'), constant('DB_USER'), constant('DB_PASS'));
-
-        $sql = "SELECT * FROM article";
-        $allArticles = $pdo->query($sql);
-		$routeToProduct = str_replace('{id}', 1, $routes->get('article')->getPath());
-
-<<<<<<< Updated upstream
-=======
     public function indexAction(RouteCollection $routes)
     {
         try {
@@ -38,9 +28,11 @@ class LoginController {
                     if ($count > 0) {
                         session_start();
                         $_SESSION["username"] = $_POST["username"];
+                        $_SESSION["password"] = $_POST["password"];
                         $_SESSION["firstname"] = $_POST["firstname"];
                         $_SESSION["name"] = $_POST["name"];
                         $_SESSION["email"] = $_POST["email"];
+
                         header('Location: ' . URL_SUBFOLDER);
                     } else {
                         $message = 'Falsche Daten, bitte versuchen Sie es erneut.';
@@ -50,25 +42,11 @@ class LoginController {
         } catch (PDOException $error) {
             $message = $error->getMessage();
         }
->>>>>>> Stashed changes
         require_once APP_ROOT . '/views/login.php';
-	}
+    }
 
-    /*public function showAction(int $id, RouteCollection $routes)
-	{
-        $login = new Login();
-        $pdo = new PDO('mysql:host=' . constant('DB_HOST') . ';' . 'dbname=' . constant('DB_NAME'), constant('DB_USER'), constant('DB_PASS'));
-
-        $sql = "SELECT * FROM article WHERE id=$id";
-        foreach ($pdo->query($sql) as $row) {
-            $login->setFirstname($row['firstname']);
-            $login->setName($row['name']);
-            $login->setUsername($row['username']);
-            $login->setEmail($row['email']);
-            $login->setPassword($row['password']);
-        }
-        $login->read($id);
-
-        require_once APP_ROOT . '/views/article.php';
-	} */
+    public function logout(RouteCollection $routes)
+    {
+        require_once APP_ROOT . '/views/logout.php';
+    }
 }
