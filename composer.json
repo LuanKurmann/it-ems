@@ -9,6 +9,7 @@
     "require": {
         "symfony/routing": "^6.1",
         "symfony/http-foundation": "^6.1",
-        "phpmailer/phpmailer": "^6.6"
+        "phpmailer/phpmailer": "^6.6",
+        "swiftmailer/swiftmailer": "^6.0"
     }
 }
