@@ -49,6 +49,7 @@ class LoginController {
                         $_SESSION["firstname"] = $user["firstname"];
                         $_SESSION["name"] = $user["name"];
                         $_SESSION["email"] = $user["email"];
+
                         header('Location: ' . URL_SUBFOLDER);
                     } else {
                         $message = 'Falsche Daten, bitte versuchen Sie es erneut.';

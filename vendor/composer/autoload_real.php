@@ -55,3 +55,4 @@ function composerRequire9c34dcc502455581614d24ecfae6ab22($fileIdentifier, $file)
         require $file;
     }
 }
+
