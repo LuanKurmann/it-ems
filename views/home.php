@@ -1,10 +1,28 @@
-<?php include 'partials\header.php'; ?>
 <?php
 session_start();
-var_dump($_SESSION["name"]);
+include 'partials\header.php';
 ?>
-<h2 class="text-center">Guten Tag <span class="text-uppercase font-weight-bold"><?php echo $_SESSION["username"]; ?></span></h2>
-<a href="<?php URL_SUBFOLDER . '/logout'; ?> ">hier</a>
+
+<?php if (array_key_exists('username', $_SESSION)) : ?>
+    <h2 class="text-center">
+        Guten Tag <span class="text-uppercase font-weight-bold"><?php echo $_SESSION["username"]; ?></span>
+    </h2>
+<?php endif; ?>
+
+<div class="container">
+    <div class="d-flex mt-1 justify-content-end align-items-center">
+        <div class="mr-2">
+            <a href="<?php echo URL_SUBFOLDER . '/login'; ?>" class="btn btn-dark">Login</a>
+        </div>
+        <div class="mr-2">
+            <a href="<?php echo URL_SUBFOLDER . '/registration'; ?>" class="btn btn-dark">Registrieren</a>
+        </div>
+        
+        <div>
+            <a href="<?php echo URL_SUBFOLDER . '/logout'; ?>" onclick="<?php session_destroy(); ?>" class="btn btn-dark">Logout</a>
+        </div>
+    </div>
+</div>
 <section class="py-5">
     <div class="container px-4 px-lg-5 mt-5">
         <div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center">
@@ -15,22 +33,21 @@ var_dump($_SESSION["name"]);
                         <div class="card-body p-4">
                             <div class="text-center">
                                 <h5 class="fw-bolder"><?php echo $articles['title']; ?></h5>
-                                <h7><?php if (strlen($articles['description']) > 50) {
+                                <p>
+                                    <?php
+                                    if (strlen($articles['description']) > 50) {
                                         echo substr($articles['description'], 0, 50) . '...';
                                     } else {
                                         echo $articles['description'];
-                                    }; ?></h7>
+                                    }
+                                    ?>
+                                </p>
                             </div>
                         </div>
                         <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
                             <div class="text-center">
-                                <a class="btn btn-outline-dark mt-auto" href="<?php echo str_replace('{id}', $articles['id'], $routes->get('article')->getPath()) ?>">Mehr infos</a>
+                                <a class="btn btn-outline-dark mt-auto" href="<?php echo str_replace('{id}}', $articles['id'], $routes->get('article')->getPath()) ?>">Mehr infos</a>
                             </div>
-                        </div>
-                        <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
-                            <div class="text-center">
-                                <a class="btn btn-outline-dark mt-auto" href="<?php echo str_replace('{id}', $articles['id'], $routes->get('article')->getPath()) ?>">Mehr infos</a>
-                            </div>                            
                         </div>
                     </div>
                 </div>

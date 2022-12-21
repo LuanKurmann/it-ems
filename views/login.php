@@ -10,7 +10,7 @@
         <br />
         <input type="submit" name="login" class="btn btn-dark" value="Login" />
     </form>
-    <?php if (isset($message)) : ?>
+     <?php if (isset($message)) : ?>
         <div class="w-100 text-center">
             <p class="text-danger "><?php echo $message; ?> </p>
         </div>
