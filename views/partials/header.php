@@ -22,7 +22,4 @@
                 <p class="lead fw-normal text-white-50 mb-0">Hier können sie Büromaterialien bestellen</p>
             </div>
         </div>
-        <div class="text-center text-white">
-            <h2><a href="<?php echo URL_SUBFOLDER . '/login'; ?>">Login</a></h2>
-        </div>
     </header>
