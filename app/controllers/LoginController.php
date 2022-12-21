@@ -1,46 +1,54 @@
 <?php
 namespace App\Controllers;
 
-use App\Models\Login;
+use App\Models\User;
 use Symfony\Component\Routing\RouteCollection;
 use PDO;
 
 class LoginController {
 
-	public function indexAction(RouteCollection $routes)
-	{
-		$pdo = new PDO('mysql:host=' . constant('DB_HOST') . ';' . 'dbname=' . constant('DB_NAME'), constant('DB_USER'), constant('DB_PASS'));
-
-        $sql = "SELECT * FROM article";
-        $allArticles = $pdo->query($sql);
-		$routeToProduct = str_replace('{id}', 1, $routes->get('article')->getPath());
-
-<<<<<<< Updated upstream
-=======
+    /**
+     * Handles the login form submission and authenticates the user.
+     *
+     * @param RouteCollection $routes
+     * @return void
+     * 
+     * @author Luca Lehmann <lle129572@stud.gibb.ch>
+     */
     public function indexAction(RouteCollection $routes)
     {
+        $message = '';
+
         try {
+            // Connect to the database
             $pdo = new PDO('mysql:host=' . constant('DB_HOST') . ';' . 'dbname=' . constant('DB_NAME'), constant('DB_USER'), constant('DB_PASS'));
             $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+
+            // Check if the form has been submitted
             if (isset($_POST["login"])) {
+                // Validate the form data
                 if (empty($_POST["username"]) || empty($_POST["password"])) {
                     $message = 'Bitte füllen Sie alle Felder aus.';
                 } else {
+                    // Check the username and password against the database
+                    $password = hash('sha256', constant('SALT') . $_POST["password"] . constant('PEPPER'));
                     $query = "SELECT * FROM users WHERE username = :username AND password = :password";
                     $statement = $pdo->prepare($query);
                     $statement->execute(
                         array(
                             'username' => $_POST["username"],
-                            'password' => $_POST["password"],
-                            )
-                        );
+                            'password' => $password,
+                        )
+                    );
                     $count = $statement->rowCount();
                     if ($count > 0) {
+                        // Start the session and store the user's information
                         session_start();
-                        $_SESSION["username"] = $_POST["username"];
-                        $_SESSION["firstname"] = $_POST["firstname"];
-                        $_SESSION["name"] = $_POST["name"];
-                        $_SESSION["email"] = $_POST["email"];
+                        $user = $statement->fetch(PDO::FETCH_ASSOC);
+                        $_SESSION["username"] = $user["username"];
+                        $_SESSION["firstname"] = $user["firstname"];
+                        $_SESSION["name"] = $user["name"];
+                        $_SESSION["email"] = $user["email"];
                         header('Location: ' . URL_SUBFOLDER);
                     } else {
                         $message = 'Falsche Daten, bitte versuchen Sie es erneut.';
@@ -50,25 +58,6 @@ class LoginController {
         } catch (PDOException $error) {
             $message = $error->getMessage();
         }
->>>>>>> Stashed changes
         require_once APP_ROOT . '/views/login.php';
 	}
-
-    /*public function showAction(int $id, RouteCollection $routes)
-	{
-        $login = new Login();
-        $pdo = new PDO('mysql:host=' . constant('DB_HOST') . ';' . 'dbname=' . constant('DB_NAME'), constant('DB_USER'), constant('DB_PASS'));
-
-        $sql = "SELECT * FROM article WHERE id=$id";
-        foreach ($pdo->query($sql) as $row) {
-            $login->setFirstname($row['firstname']);
-            $login->setName($row['name']);
-            $login->setUsername($row['username']);
-            $login->setEmail($row['email']);
-            $login->setPassword($row['password']);
-        }
-        $login->read($id);
-
-        require_once APP_ROOT . '/views/article.php';
-	} */
 }
