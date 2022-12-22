@@ -3,12 +3,6 @@ session_start();
 include 'partials\header.php';
 ?>
 
-<?php if (array_key_exists('username', $_SESSION)) : ?>
-    <h2 class="text-center">
-        Guten Tag <span class="text-uppercase font-weight-bold"><?php echo $_SESSION["username"]; ?></span>
-    </h2>
-<?php endif; ?>
-
 <div class="container">
     <div class="d-flex mt-1 justify-content-end align-items-center">
         <div class="mr-2">
@@ -23,6 +17,13 @@ include 'partials\header.php';
         </div>
     </div>
 </div>
+
+<?php if (array_key_exists('username', $_SESSION)) : ?>
+    <h2 class="text-center">
+        Guten Tag <span class="text-uppercase font-weight-bold"><?php echo $_SESSION["username"]; ?></span>
+    </h2>
+<?php endif; ?>
+
 <section class="py-5">
     <div class="container px-4 px-lg-5 mt-5">
         <div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center">
@@ -46,7 +47,7 @@ include 'partials\header.php';
                         </div>
                         <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
                             <div class="text-center">
-                                <a class="btn btn-outline-dark mt-auto" href="<?php echo str_replace('{id}}', $articles['id'], $routes->get('article')->getPath()) ?>">Mehr infos</a>
+                                <a class="btn btn-outline-dark mt-auto" href="<?php echo str_replace('{id}', $articles['id'], $routes->get('article')->getPath()) ?>">Mehr infos</a>
                             </div>
                         </div>
                     </div>

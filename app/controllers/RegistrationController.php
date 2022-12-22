@@ -1,11 +1,13 @@
 <?php
+
 namespace App\Controllers;
 
 use App\Models\User;
 use Symfony\Component\Routing\RouteCollection;
 use PDO;
 
-class RegistrationController {
+class RegistrationController
+{
 
     /**
      * Handles the login form submission and authenticates the user.
@@ -33,7 +35,7 @@ class RegistrationController {
                     // Validate the username using regex
                     if (!preg_match('/^[a-zA-Z0-9]{3,16}$/', $_POST["username"])) {
                         $message = 'Der Benutzername darf nur alphanumerische Zeichen enthalten und muss zwischen 3 und 16 Zeichen lang sein.';
-                    } 
+                    }
                     if (!preg_match('/^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/', $_POST["email"])) {
                         $message = 'Bitte geben Sie eine gültige E-Mail-Adresse ein.';
                     } else {
@@ -49,7 +51,7 @@ class RegistrationController {
                             $password = hash('sha256', constant('SALT') . $_POST["password"] . constant('PEPPER'));
                             $query = "INSERT INTO users (username, password, firstname, name, email) VALUES (:username, :password, :firstname, :name, :email)";
                             $statement = $pdo->prepare($query);
-                            $statement->execute(
+                            if ($statement->execute(
                                 [
                                     'username' => $_POST["username"],
                                     'password' => $password,
@@ -57,8 +59,11 @@ class RegistrationController {
                                     'name' => $_POST["name"],
                                     'email' => $_POST["email"],
                                 ]
-                            );
-                            $message = 'Ihr Benutzerkonto wurde erfolgreich erstellt.';
+                            )) {
+                                $message = 'Ihr Benutzerkonto wurde erfolgreich erstellt. Weiterleitung in Kürze.';
+                                header('Location:' . URL_SUBFOLDER);
+                                exit;
+                            }
                         }
                     }
                 }
